@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/sidebar'; // Import Sidebar component
+import EmployeeTable from './components/EmployeeTable'; // Import EmployeeTable component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="d-flex" style={{ minHeight: '100vh' }}>
+        {/* Sidebar on the left */}
+        <Sidebar />
+
+        {/* Main content area, adjusted for sidebar */}
+        <div className="container-fluid" style={{ marginLeft: '70px' }}>
+          {/* This div will hold the employee table or any other content */}
+          <Routes>
+            <Route path="/" element={<div>Home</div>} />
+            <Route path="/employees" element={<EmployeeTable />} />
+            <Route path="/settings" element={<div>Settings</div>} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 
